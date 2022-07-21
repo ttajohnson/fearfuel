@@ -1,5 +1,5 @@
 # Byte-compiled / optimized / DLL files
-secrets.*
+apikey.*
 __pycache__/
 *.py[cod]
 *$py.class
