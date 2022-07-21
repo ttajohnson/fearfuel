@@ -9,11 +9,12 @@
     As an avid fan of the Horror genre in all forms, I've seen a huge list of movies. I can't always remember what I've watched already, and would love a way to keep track. I imagine other fans of the genre would enjoy this platform as well; as of now it has no intentions of being another social network, instead acting as a private and personal log/journal tool.
 
 ## Tools:
-    - Django REST
-    - Vue
-    - Skeleton Framework (Modified + CSS)
-    - Custom User Model
-    - TheMovieDatabase API
+    - Django Backend (Py)
+    - Vue Frontend (HTML/JS)
+    - Django Rest for User Lists (REST)
+    - Framework (Tailwind? Skeleton?) + (CSS)
+    - Custom User Model (
+    - TheMovieDatabase API (AJAX/Axios)
 
 ## Features:
     
