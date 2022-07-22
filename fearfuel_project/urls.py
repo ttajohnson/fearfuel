@@ -16,6 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from fearfuel.views import (
+    fear_fuel_home,
+)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', fear_fuel_home),
 ]
