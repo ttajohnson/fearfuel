@@ -1,3 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
+def fear_fuel_home(request):
+    print(request.headers)
+    return render(request, 'fearfuel/home.html', {})
