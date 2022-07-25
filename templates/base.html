@@ -8,7 +8,16 @@
 </head>
 <body>
     <header>
-        <h1>FearFuel</h1>
+        <h1><a href="{% url 'home' %}">FearFuel</a></h1>
+
+        {% if request.user.is_authenticated %}
+            <p><a href="{% url 'account' %}">{{ request.user.username }}</a>  | <a href="{% url 'logout' %}">Logout</a></p>
+
+        {% else %}
+            <p><a href="{% url 'signup' %}">Sign Up</a> | <a href="{% url 'login' %}">Login</a></p>
+
+        {% endif %}
+
         <nav>
             <a href="#">Link1</a>
             <a href="#">Link2</a>
