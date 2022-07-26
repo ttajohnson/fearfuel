@@ -9,6 +9,54 @@
     {% include 'fearfuel/snippets/movies.html' %}
 </div>
 
+<div id="app">
+    <ol class="movies">
+        <li class="card" v-for="movie in horrorMovieList" :key=movie.id>
+            <input class="card-input" type="checkbox" name="">
+            <div class="toggle">⛧</div>
+            <div class="imgBx">
+                <img id="poster" :src="`http://image.tmdb.org/t/p/w500${ movie.poster_path }`" alt="">
+            </div>
+            <div class="details">
+                <h2>[[ movie.title ]]</h2>
+                <h4>[[ movie.release_date ]]</h4>
+                <p>[[ movie.overview ]]</p>
+            </div>
+        </li>
+    </ol>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    let app = new Vue({
+        el: '#app',
+        delimiters: ["[[", "]]"],
+        data: {
+            horrorMovieData: [],
+            horrorMovieList: [],
+            imagePath: "http://image.tmdb.org/t/p/w500"
+        },
+        methods: {
+            loadHorrorMovies: function() {
+                axios({
+                    method: 'get',
+                    url: 'https://api.themoviedb.org/3/discover/movie?api_key=379e908ddf277da10cfb2e7dc3901114&with_genres=27'
+                }).then(response => {
+                    this.horrorMovieData = response.data
+                    this.horrorMovieList = this.horrorMovieData.results
+                    console.log(this.horrorMovieList)
+                }).catch(error => {
+                    console.log(error)
+                    console.log(error.response.data)
+                })
+            }
+        },
+        created: function() {
+            this.loadHorrorMovies()
+        }
+    })
+</script>
+
 {% endblock content %}
 
 
