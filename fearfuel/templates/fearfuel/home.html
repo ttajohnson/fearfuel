@@ -3,27 +3,57 @@
 {% block content %}
 
 
-<div>
+<!-- <div>
     <h2>Body</h2>
     <p>This is where the good stuff goes</p>
     {% include 'fearfuel/snippets/movies.html' %}
-</div>
+</div> -->
 
 <div id="app">
-    <ol class="movies">
-        <li class="card" v-for="movie in horrorMovieList" :key=movie.id>
-            <input class="card-input" type="checkbox" name="">
-            <div class="toggle">⛧</div>
-            <div class="imgBx">
-                <img id="poster" :src="`http://image.tmdb.org/t/p/w500${ movie.poster_path }`" alt="">
-            </div>
-            <div class="details">
-                <h2>[[ movie.title ]]</h2>
-                <h4>[[ movie.release_date ]]</h4>
-                <p>[[ movie.overview ]]</p>
-            </div>
-        </li>
-    </ol>
+
+    <div class="searchbar">
+        <input type="text" v-model="searchTerm" placeholder="Search..." @keyup.enter="searchHorrorMovies" style="height: 1.5rem; width: 8rem;">
+        <button @click="searchHorrorMovies" style="width: 4rem; height: 2rem; font-size: large;">☠</button>
+    </div>
+
+    <div v-if="Object.keys(searchResults).length">
+        <ol class="movies">
+            <li class="card" v-for="movie in searchResultsHorror" :key=movie.id style="margin: .5rem;">
+                <input class="card-input" type="checkbox" name="">
+                <div class="toggle">⛧</div>
+                <div class="imgBx">
+                    <img id="poster" :src="`http://image.tmdb.org/t/p/w500${ movie.poster_path }`" alt="">
+                </div>
+                <div class="details">
+                    <h2>[[ movie.title ]]</h2>
+                    <h4>[[ movie.release_date ]]</h4>
+                    <p>[[ movie.overview ]]</p>
+                </div>
+            </li>
+        </ol>
+    </div>
+
+    <div v-else="Objects.keys(horrorMovieList).length">
+        <ol class="movies">
+            <li class="card" v-for="movie in horrorMovieList" :key=movie.id style="margin: .5rem;">
+                <input class="card-input" type="checkbox" name="">
+                <div class="toggle">⛧</div>
+                <div class="imgBx">
+                    <img id="poster" :src="`http://image.tmdb.org/t/p/w500${ movie.poster_path }`" alt="">
+                </div>
+                <div class="details">
+                    <h2>[[ movie.title ]]</h2>
+                    <h4>[[ movie.release_date ]]</h4>
+                    <p>[[ movie.overview ]]</p>
+                </div>
+            </li>
+        </ol>
+    </div>
+    <div class="page-buttons">
+        <div class="page" id="prev">Previous Page</div>
+        <div class="current" id="current">1</div>
+        <div class="page" id="next">Next Page</div>
+    </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -34,7 +64,13 @@
         data: {
             horrorMovieData: [],
             horrorMovieList: [],
-            imagePath: "http://image.tmdb.org/t/p/w500"
+            imagePath: "http://image.tmdb.org/t/p/w500",
+            page: "page=",
+            genreid: 27,
+            searchTerm: "",
+            searchResultData: [],
+            searchResults: [],
+            searchResultsHorror: [],
         },
         methods: {
             loadHorrorMovies: function() {
@@ -44,7 +80,26 @@
                 }).then(response => {
                     this.horrorMovieData = response.data
                     this.horrorMovieList = this.horrorMovieData.results
-                    console.log(this.horrorMovieList)
+                    
+                }).catch(error => {
+                    console.log(error)
+                    console.log(error.response.data)
+                })
+            },
+            searchHorrorMovies: function() {
+                axios({
+                    method:'get',
+                    url:'https://api.themoviedb.org/3/search/movie?api_key=379e908ddf277da10cfb2e7dc3901114',
+                    params: {
+                        query: this.searchTerm,
+                        
+                    },
+                }).then(response => {
+                    this.searchResultData = response.data
+                    this.searchResults = this.searchResultData.results.filter(title => title.title.toLowerCase().includes(this.searchTerm.toLowerCase()))
+                    this.searchResultsHorror = this.searchResults.filter(genre_ids => genre_ids.genre_ids.includes(this.genreid))
+                    console.log(this.searchTerm)
+                    console.log(this.searchResultsHorror)
                 }).catch(error => {
                     console.log(error)
                     console.log(error.response.data)
