@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'fearfuel.apps.FearfuelConfig',
+    'horrorlist.apps.HorrorlistConfig',
     'account.apps.AccountConfig',
 ]
 

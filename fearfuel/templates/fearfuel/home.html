@@ -12,8 +12,8 @@
 <div id="app">
 
     <div class="searchbar">
-        <input type="text" v-model="searchTerm" placeholder="Search..." @keyup.enter="searchHorrorMovies" style="height: 1.5rem; width: 8rem;">
-        <button @click="searchHorrorMovies" style="width: 4rem; height: 2rem; font-size: large;">☠</button>
+        <input id="searchbar" type="text" v-model="searchTerm" placeholder="Search..." @keyup.enter="searchHorrorMovies">
+        <button id="searchbtn" @click="searchHorrorMovies">☠</button>
     </div>
 
     <div v-if="Object.keys(searchResults).length">
@@ -50,9 +50,9 @@
         </ol>
     </div>
     <div class="page-buttons">
-        <div class="page" id="prev">Previous Page</div>
-        <div class="current" id="current">1</div>
-        <div class="page" id="next">Next Page</div>
+        <div class="page" id="prev"><button @click="prevPage">Previous</button></div>
+        <div class="current" id="current"><p>[[ pageNum ]]</p></div>
+        <div class="page" id="next"><button @click="nextPage">Next</button></div>
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
@@ -65,7 +65,9 @@
             horrorMovieData: [],
             horrorMovieList: [],
             imagePath: "http://image.tmdb.org/t/p/w500",
-            page: "page=",
+            pageNum: 1,
+            totalPages: [],
+            lengthPages: [],
             genreid: 27,
             searchTerm: "",
             searchResultData: [],
@@ -76,11 +78,14 @@
             loadHorrorMovies: function() {
                 axios({
                     method: 'get',
-                    url: 'https://api.themoviedb.org/3/discover/movie?api_key=379e908ddf277da10cfb2e7dc3901114&with_genres=27'
+                    url: 'https://api.themoviedb.org/3/discover/movie?api_key=379e908ddf277da10cfb2e7dc3901114&with_genres=27',
+                    params: {
+                        page: this.pageNum,
+                    }
                 }).then(response => {
                     this.horrorMovieData = response.data
                     this.horrorMovieList = this.horrorMovieData.results
-                    
+                    console.log(this.horrorMovieData)
                 }).catch(error => {
                     console.log(error)
                     console.log(error.response.data)
@@ -98,12 +103,22 @@
                     this.searchResultData = response.data
                     this.searchResults = this.searchResultData.results.filter(title => title.title.toLowerCase().includes(this.searchTerm.toLowerCase()))
                     this.searchResultsHorror = this.searchResults.filter(genre_ids => genre_ids.genre_ids.includes(this.genreid))
-                    console.log(this.searchTerm)
+                    console.log(this.searchResultData)
                     console.log(this.searchResultsHorror)
                 }).catch(error => {
                     console.log(error)
                     console.log(error.response.data)
                 })
+            },
+            nextPage: function() {
+                this.pageNum++
+                this.loadHorrorMovies()
+            },
+            prevPage: function() {
+                if (this.pageNum >= 2) {
+                    this.pageNum--;
+                }
+                this.loadHorrorMovies()
             }
         },
         created: function() {

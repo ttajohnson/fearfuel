@@ -11,6 +11,28 @@ a:hover {
     color: rgb(197, 80, 59);
 }
 
+.searchbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 5rem;
+    padding: 10px 0 0 0;
+    
+}
+
+#searchbar {
+    width: 50vw;
+    height: 3rem;
+    font-size: xx-large;
+}
+
+#searchbtn {
+    width: 10vw;
+    height: 3.5rem;
+    font-size: xx-large;
+}
+
 .site-title {
     font-family: 'Dark monday black', cursive;
     font-size: 80px;
@@ -99,6 +121,13 @@ a:hover {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    margin: 5rem;
+}
+
+.current {
+    font-family: 'Doujinshi', sans-serif;
+    font-size: x-large;
+    color: rgb(158, 63, 47);
 }
 
 
