@@ -66,6 +66,7 @@
             horrorMovieList: [],
             imagePath: "http://image.tmdb.org/t/p/w500",
             pageNum: 1,
+            totalPages: [],
             genreid: 27,
             searchTerm: "",
             searchResultData: [],
@@ -83,7 +84,7 @@
                 }).then(response => {
                     this.horrorMovieData = response.data
                     this.horrorMovieList = this.horrorMovieData.results
-                    
+                    console.log(this.horrorMovieData)
                 }).catch(error => {
                     console.log(error)
                     console.log(error.response.data)
@@ -101,7 +102,7 @@
                     this.searchResultData = response.data
                     this.searchResults = this.searchResultData.results.filter(title => title.title.toLowerCase().includes(this.searchTerm.toLowerCase()))
                     this.searchResultsHorror = this.searchResults.filter(genre_ids => genre_ids.genre_ids.includes(this.genreid))
-                    console.log(this.searchTerm)
+                    console.log(this.searchResultData)
                     console.log(this.searchResultsHorror)
                 }).catch(error => {
                     console.log(error)

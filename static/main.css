@@ -121,6 +121,13 @@ a:hover {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    margin: 5rem;
+}
+
+.current {
+    font-family: 'Doujinshi', sans-serif;
+    font-size: x-large;
+    color: rgb(158, 63, 47);
 }
 
 
