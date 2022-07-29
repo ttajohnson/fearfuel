@@ -4,26 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap" rel="stylesheet">
     <link href="http://fonts.cdnfonts.com/css/dark-monday-black" rel="stylesheet">
     <link href="http://fonts.cdnfonts.com/css/doujinshi" rel="stylesheet">
-    <link rel="stylesheet" href="/static/main.css">
+    <link rel="stylesheet" href="/static/css/main.css">
     <title>FearFuel</title>
 </head>
 <body>
     <header>
         <h1 class="site-title"><a href="{% url 'home' %}">FearFuel</a></h1>
+        <div class="logins">
+            {% if request.user.is_authenticated %}
+                <p><a href="{% url 'account' %}">{{ request.user.username }}</a>  | <a href="{% url 'logout' %}">Logout</a></p>
 
-        {% if request.user.is_authenticated %}
-            <p><a href="{% url 'account' %}">{{ request.user.username }}</a>  | <a href="{% url 'logout' %}">Logout</a></p>
+            {% else %}
+                <p><a href="{% url 'signup' %}">Sign Up</a> | <a href="{% url 'login' %}">Login</a></p>
 
-        {% else %}
-            <p><a href="{% url 'signup' %}">Sign Up</a> | <a href="{% url 'login' %}">Login</a></p>
-
-        {% endif %}
-
+            {% endif %}
+        </div>
         <nav>
             <a href="#">Link1</a>
             <a href="#">Link2</a>
