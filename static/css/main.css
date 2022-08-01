@@ -1,12 +1,25 @@
 html {
-    background-color: #18181a;
-    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+    background-color: hsl(240, 4%, 10%);
+    font-family: 'Cinzel', Arial, Helvetica, sans-serif
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
 
+img {
+    display: block;
+    max-width: 100%;
+}
+
+body {
+    color: white;
+    padding: 5em;
 }
 
 a {
     text-decoration: none;
-    color: rgb(255, 255, 255);
+    color: white;
     transition: all .2s;
 }
 
@@ -14,63 +27,16 @@ a:hover {
     color: rgb(197, 80, 59);
 }
 
-header {
-    display: flex;
-    flex-direction: column;
-    padding-left: 5rem;
-    padding-right: 5rem;
-}
 
 .site-title {
-    font-family: 'Dark monday black', cursive;
+    font-family: 'Dark monday black', 'Cinzel', Arial, Helvetica, sans-serif;
     font-size: 80px;
 }
 
-.logins {
+.header-links {
     display: flex;
-    justify-content: right;
-    align-items: flex-end;
-    color: #fff;
+    justify-content: space-between;
 }
-.searchbtn {
-    display:inline-block;
-    padding:0.5em 3em;
-    border: none;
-    margin:0 0.3em 0.3em 0;
-    box-sizing: border-box;
-    text-decoration:none;
-    text-transform:uppercase;
-    font-family:'Roboto',sans-serif;
-    font-weight:400;
-    color:#817c7c;
-    text-align:center;
-    transition: all 0.15s;
-}
-
-.searchbar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    margin: 5rem;
-    padding: 10px 0 0 0;
-    
-    
-}
-
-#search-bar {
-    width: 50vw;
-    height: 3rem;
-    font-size: xx-large;
-    background-color: #817c7c;
-    border: none;
-}
-
-#skully {
-    width: 2rem;
-    height: 2rem;
-}
-
 
 .movies {
     list-style: none;
@@ -110,7 +76,7 @@ header {
 .toggle {
     pointer-events: none;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.89);
+    background: rgba(7, 6, 6, 0.89);
     transition: 0.5s;
     text-align: center;
     line-height: 50px;
@@ -138,17 +104,25 @@ header {
 
 .details {
     color: #fff;
+    font-size: 1.75vmin;
     padding: 20px;
     box-sizing: border-box;
     z-index: 11;
     pointer-events: none;
     transition: 0.5s;
     opacity: 0;
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .card-input:checked ~ .details {
     opacity: 1;
     transition-delay: 0.5s;
+}
+
+.post {
+    pointer-events: all;
+    z-index: 12;
 }
 
 .page-buttons {
@@ -158,10 +132,62 @@ header {
     margin: 5rem;
 }
 
-.current {
-    font-family: 'Doujinshi', sans-serif;
-    font-size: x-large;
-    color: rgb(158, 63, 47);
+.searchbar {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 3rem;
 }
 
+#search-bar {
+    align-items: center;
+    border-width: 0;
 
+    color: #814040;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    letter-spacing: .04em;
+    line-height: 16px;
+    margin: 0;
+    padding: 18px 18px;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: rgba(255, 255, 255, 0.4) 0 0 4px,rgba(255, 255, 255, 0.2) 0 0 12px,rgba(91, 31, 31, 0.6) 1px 1px 4px,rgba(91, 31, 31, 0.32) 4px 4px 16px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+}
+
+.button-72 {
+  align-items: center;
+  border-width: 0;
+  transition: all .2s;
+  color: #814040;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  letter-spacing: .04em;
+  line-height: 16px;
+  margin: 0;
+  padding: 18px 18px;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: rgba(255, 255, 255, 0.4) 0 0 4px,rgba(255, 255, 255, 0.2) 0 0 12px,rgba(91, 31, 31, 0.6) 1px 1px 4px,rgba(91, 31, 31, 0.32) 4px 4px 16px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+}
+
+.button-72:hover {
+    background-color: rgb(197, 80, 59);
+    color: #000;
+}
+
+@media (min-width: 768px) {
+  .button-72 {
+    font-size: 21px;
+    padding: 18px 34px;
+  }
+}
