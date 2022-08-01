@@ -10,3 +10,6 @@ class Movie(models.Model):
     notes = models.TextField(blank=True)
     watched_by = models.ManyToManyField(get_user_model(), related_name="consumed", blank=True)
     watch_list = models.ManyToManyField(get_user_model(), related_name="watchlist", blank=True)
+
+    def __str__(self):
+        return self.title

@@ -19,6 +19,8 @@ from django.contrib.auth import views as auth_views
 
 from fearfuel.views import (
     fear_fuel_home,
+    consumed_list,
+    watchlist,
 )
 
 from account.views import (
@@ -31,6 +33,8 @@ from account.views import (
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', fear_fuel_home, name="home"),
+    path('consumed/', consumed_list, name="consumed"),
+    path('watchlist/', watchlist, name="watchlist"),
     path('signup/', registration_view, name="signup"),
     path('logout/', logout_view, name="logout"),
     path('login/', login_view, name="login"),

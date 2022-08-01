@@ -9,26 +9,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet"> 
     <link href="http://fonts.cdnfonts.com/css/dark-monday-black" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/normalize.css">
-    <link rel="stylesheet" href="/static/css/main2.css">
+    <link rel="stylesheet" href="/static/css/main.css">
     <title>FearFuel</title>
 </head>
 <body>
     <header>
         <h1 class="site-title"><a href="{% url 'home' %}">FearFuel</a></h1>
-        <div class="logins">
+        <section class="header-links">
+            <div class="logins">
+                {% if request.user.is_authenticated %}
+                    <p><a href="{% url 'account' %}">{{ request.user.username }}</a>  | <a href="{% url 'logout' %}">Logout</a></p>
+
+                {% else %}
+                    <p><a href="{% url 'signup' %}">Sign Up</a> | <a href="{% url 'login' %}">Login</a></p>
+
+                {% endif %}
+            </div>
             {% if request.user.is_authenticated %}
-                <p><a href="{% url 'account' %}">{{ request.user.username }}</a>  | <a href="{% url 'logout' %}">Logout</a></p>
-
-            {% else %}
-                <p><a href="{% url 'signup' %}">Sign Up</a> | <a href="{% url 'login' %}">Login</a></p>
-
+                <nav class="links">
+                    <p><a id="link" href="{% url 'consumed' %}">Consumed</a> | <a id="link" href="{% url 'watchlist' %}">Watchlist</a></p>
+                </nav>
             {% endif %}
-        </div>
-        <nav class="links">
-            <a id="link" href="#">Consumed</a>
-            <a id="link" href="#">Watchlist</a>
-            <a id="link" href="#"></a>
-        </nav>
+        </section>
         <hr>
     </header>
     <main>
