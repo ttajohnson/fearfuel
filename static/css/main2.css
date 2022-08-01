@@ -1,0 +1,54 @@
+html {
+    box-sizing: border-box;
+    background-color: hsl(240, 4%, 10%);
+    font-family: 'Cinzel', Arial, Helvetica, sans-serif
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+body {
+    color: white;
+    padding: 5em;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    transition: all .2s;
+}
+
+a:hover {
+    color: rgb(197, 80, 59);
+}
+
+
+.site-title {
+    font-family: 'Dark monday black', 'Cinzel', Arial, Helvetica, sans-serif;
+    font-size: 5vw;
+}
+
+.logins {
+    display: flex;
+    justify-content: right;
+    align-items: flex-end;
+}
+
+.links {
+    display: flex;
+    justify-content: start;
+    align-items: flex-start;
+    padding-bottom: 6em;
+    
+}
+
+#link {
+    margin-left: 1em;
+}
+
+
