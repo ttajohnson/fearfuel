@@ -6,6 +6,7 @@ class MovieSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Movie
         fields = (
+            'id',
             'number',
             'title',
             'image',
@@ -16,8 +17,8 @@ class MovieSerializer(serializers.ModelSerializer):
         )
 
 class UserSerializer(serializers.ModelSerializer):
-    consumed_movies = MovieSerializer(many=True, source="consumed")
-    watchlist_movies = MovieSerializer(many=True, source="watchlist")
+    consumed_movies = MovieSerializer(many=True, source="consumed", read_only=True)
+    watchlist_movies = MovieSerializer(many=True, source="watchlist", read_only=True)
     
     class Meta:
         model = get_user_model()
@@ -26,4 +27,6 @@ class UserSerializer(serializers.ModelSerializer):
             'username',
             'consumed_movies',
             'watchlist_movies',
+            'consumed',
+            'watchlist',
         )
