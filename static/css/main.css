@@ -159,7 +159,7 @@ a:hover {
     vertical-align: baseline;
 }
 
-.button-72 {
+.spookybtn {
   align-items: center;
   border-width: 0;
   transition: all .2s;
@@ -180,13 +180,13 @@ a:hover {
   vertical-align: baseline;
 }
 
-.button-72:hover {
+.spookybtn:hover {
     background-color: rgb(197, 80, 59);
     color: #000;
 }
 
 @media (min-width: 768px) {
-  .button-72 {
+  .spookybtn {
     font-size: 21px;
     padding: 18px 34px;
   }
