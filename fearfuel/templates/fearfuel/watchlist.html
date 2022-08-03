@@ -6,7 +6,30 @@
 
 <div id="app">
 
-    <h1>Your Watchlist</h1>
+    <h1>[[ currentUser.username ]] Watch List</h1>
+
+    <div v-if="Object.keys(userWatchlist).length">
+        <ol class="movies">
+            <li class="card" v-for="movie in currentUser.watchlist_movies" :key="movie.id" style="margin: .5rem;">
+                <input class="card-input" type="checkbox" name="">
+                <div class="toggle">⛧</div>
+                <div class="imgBx">
+                    <img id="poster" :src="`http://image.tmdb.org/t/p/w500${ movie.image }`" alt="">
+                </div>
+                <div class="details">
+                    <div class="post">
+                        {% if user.is_authenticated %}
+                            <button class="lilspookybtn" type="submit" @click="removeWatchlist(movie)">×</button>
+                            <button class="lilspookybtn" type="submit" @click="removeWatchlist(movie)">+</button>
+                        {% endif %}
+                    </div>
+                    <h2>[[ movie.title ]]</h2>
+                    <h4>[[ movie.release_date ]]</h4>
+                    <p>[[ movie.overview ]]</p>
+                </div>
+            </li>
+        </ol>
+    </div>
 
 </div>
 
@@ -20,6 +43,8 @@
             users: [],
             currentUser: {},
             movies: [],
+            userWatchlist: [],
+
         },
         methods: {
             loadUsers: function() {
@@ -32,13 +57,32 @@
                 axios({
                     method: 'get',
                     url: '/api/v1/currentuser/',
-                }).then(response => this.currentUser = response.data)
+                }).then(response => {
+                    this.currentUser = response.data
+                    this.userWatchlist = this.currentUser.watchlist
+                })
             },
             loadMovies: function() {
                 axios({
                     method:'get',
                     url:'/api/v1/movies/',
                 }).then(response => this.movies = response.data)
+            },
+            removeWatchlist: function(movie) {
+                console.log(movie)
+                this.currentUser.watchlist.splice(this.currentUser.watchlist.indexOf(movie.id), 1)
+                axios({
+                    method: 'patch',
+                    url: '/api/v1/currentuser/',
+                    headers: {
+                        'X-CSRFToken': this.csrfToken,
+                    },
+                    data: {
+                        "watchlist": this.currentUser.watchlist
+                    }
+                }).then(response => {
+                    this.loadCurrentUser()
+                })
             },
         },
         created: function() {

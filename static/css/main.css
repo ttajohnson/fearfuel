@@ -87,6 +87,7 @@ a:hover {
 .card-input:checked ~ .toggle {
     box-shadow: 0 0 0 500px #000;
     transform: rotate(900deg);
+    color: rgb(197, 80, 59);
 }
 
 .imgBx, .details {
@@ -112,7 +113,16 @@ a:hover {
     transition: 0.5s;
     opacity: 0;
     max-width: 100%;
-    max-height: 100%;
+    max-height: 200px;
+}
+
+.details, h2 {
+    font-size: 20px;
+}
+
+.details, p {
+    font-size: 13px;
+    max-height: 200px;
 }
 
 .card-input:checked ~ .details {
@@ -125,10 +135,15 @@ a:hover {
     z-index: 12;
 }
 
+.post:focus {
+    background-color: rgb(197, 80, 59);
+}
+
+
 .page-buttons {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     margin: 5rem;
 }
 
@@ -160,24 +175,24 @@ a:hover {
 }
 
 .spookybtn {
-  align-items: center;
-  border-width: 0;
-  transition: all .2s;
-  color: #814040;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  letter-spacing: .04em;
-  line-height: 16px;
-  margin: 0;
-  padding: 18px 18px;
-  text-align: center;
-  text-decoration: none;
-  text-shadow: rgba(255, 255, 255, 0.4) 0 0 4px,rgba(255, 255, 255, 0.2) 0 0 12px,rgba(91, 31, 31, 0.6) 1px 1px 4px,rgba(91, 31, 31, 0.32) 4px 4px 16px;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  vertical-align: baseline;
+    align-items: center;
+    border-width: 0;
+    transition: all .2s;
+    color: #814040;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    letter-spacing: .04em;
+    line-height: 16px;
+    margin: 0;
+    padding: 18px 18px;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: rgba(255, 255, 255, 0.4) 0 0 4px,rgba(255, 255, 255, 0.2) 0 0 12px,rgba(91, 31, 31, 0.6) 1px 1px 4px,rgba(91, 31, 31, 0.32) 4px 4px 16px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
 }
 
 .spookybtn:hover {
@@ -190,4 +205,32 @@ a:hover {
     font-size: 21px;
     padding: 18px 34px;
   }
+}
+
+.lilspookybtn {
+    align-items: center;
+    font-size: xx-large;
+    border-width: 0;
+    border-radius: 45%;
+    transition: all .2s;
+    color: #814040;
+    background-color: #000;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    letter-spacing: .04em;
+    line-height: 10px;
+    margin: 0;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+}
+
+.lilspookybtn:hover {
+    background-color: rgb(197, 80, 59);
+    color: #000;
 }

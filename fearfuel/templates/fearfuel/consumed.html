@@ -19,7 +19,7 @@
                 <div class="details">
                     <div class="post">
                         {% if user.is_authenticated %}
-                            <button type="submit" @click="removeConsumed(movie)">Unconsume</button>
+                            <button class="lilspookybtn" type="submit" @click="removeConsumed(movie)">×</button>
                         {% endif %}
                     </div>
                     <h2>[[ movie.title ]]</h2>
