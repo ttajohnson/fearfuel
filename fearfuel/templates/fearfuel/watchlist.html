@@ -20,7 +20,7 @@
                     <div class="post">
                         {% if user.is_authenticated %}
                             <button class="lilspookybtn" type="submit" @click="removeWatchlist(movie)">×</button>
-                            <button class="lilspookybtn" type="submit" @click="removeWatchlist(movie)">+</button>
+                            <button class="lilspookybtn" type="submit" @click="moveToConsumed(movie)">+</button>
                         {% endif %}
                     </div>
                     <h2>[[ movie.title ]]</h2>
@@ -79,6 +79,23 @@
                     },
                     data: {
                         "watchlist": this.currentUser.watchlist
+                    }
+                }).then(response => {
+                    this.loadCurrentUser()
+                })
+            },
+            moveToConsumed: function(movie) {
+                this.currentUser.consumed.push(movie.id)
+                this.currentUser.watchlist.splice(this.currentUser.watchlist.indexOf(movie.id), 1)
+                axios({
+                    method: 'patch',
+                    url: '/api/v1/currentuser/',
+                    headers: {
+                        'X-CSRFToken': this.csrfToken,
+                    },
+                    data: {
+                        "watchlist": this.currentUser.watchlist,
+                        "consumed": this.currentUser.consumed
                     }
                 }).then(response => {
                     this.loadCurrentUser()
