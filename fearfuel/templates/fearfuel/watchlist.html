@@ -6,7 +6,7 @@
 
 <div id="app">
 
-    <h1>[[ currentUser.username ]] Watch List</h1>
+    <h1>[[ currentUser.username ]]'s Watchlist</h1>
 
     <div v-if="Object.keys(userWatchlist).length">
         <ol class="movies">
@@ -20,7 +20,7 @@
                     <div class="post">
                         {% if user.is_authenticated %}
                             <button class="lilspookybtn" type="submit" @click="removeWatchlist(movie)">×</button>
-                            <button class="lilspookybtn" type="submit" @click="moveToConsumed(movie)">+</button>
+                            <button type="submit" @click="moveToConsumed(movie)">Consume</button>
                         {% endif %}
                     </div>
                     <h2>[[ movie.title ]]</h2>
