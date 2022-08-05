@@ -4,16 +4,14 @@
 # NAME: FearFuel
 
 ## Overview:
-    A web app dedicated to the horror movies. Users will sign into an account to access a database of Horror movies. Specific titles will have detail pages including cover art, director, where to find them streaming. A user can add specific titles to personal "consumed" ("read" or "watched") lists, as well as tagging titles for a wish/watchlist. A private summary/review can be written so that a user may remember their favorite plots, quotes, and feelings about a specific title.
-
-    As an avid fan of the Horror genre in all forms, I've seen a huge list of movies. I can't always remember what I've watched already, and would love a way to keep track. I imagine other fans of the genre would enjoy this platform as well; as of now it has no intentions of being another social network, instead acting as a private and personal log/journal tool.
+   A Horror-centric visual journal of Horror Movies the user has watched and wants to watch.
 
 ## Tools:
     - Django Backend (Py)
     - Vue Frontend (HTML/JS)
     - Django Rest for User Lists (REST)
-    - Framework (Tailwind? Skeleton?) + (CSS)
-    - Custom User Model (
+    - CSS Self Styled
+    - Custom User Model (Django)
     - TheMovieDatabase API (AJAX/Axios)
 
 ## Features:
